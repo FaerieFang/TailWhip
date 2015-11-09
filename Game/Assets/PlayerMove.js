@@ -5,6 +5,7 @@ var moveDown : KeyCode;
 var moveLeft : KeyCode;
 var moveRight : KeyCode;
 var rb : Rigidbody2D;
+var turnSpe : float;
 
 var speed : float = 10;
 
@@ -16,49 +17,26 @@ function Start () {
  function Update () {
  	//movement
  	if (Input.GetKey(moveUp)){
- 		rb.velocity.y = speed;
-		rb.MoveRotation(0);
+ 		rb.velocity = transform.up * speed;
 
  	}
  	
  	else if (Input.GetKey(moveDown)) {
- 		rb.velocity.y = speed * -1;
- 		rb.MoveRotation(180);
+ 		rb.velocity = transform.up * (speed*-0.5);
  	}
  	
- 	else if (Input.GetKey(moveRight)){
- 		rb.velocity.x = speed;
- 		rb.MoveRotation(90);
+ 	if (Input.GetKey(moveRight)){
+ 		rb.rotation += turnSpe * -1;
+
  	}
  	
 	else if  (Input.GetKey(moveLeft)){	
- 		rb.velocity.x = speed * -1;
- 		rb.MoveRotation(270);
-
+		rb.rotation += turnSpe;
  	}
 	
  	 
  }
 
-function FixedUpdate (){
 
- 	if (Input.GetKey(moveUp)){
-		rb.MoveRotation(0);
-
- 	}
- 	
- 	else if (Input.GetKey(moveDown)) {
- 		rb.MoveRotation(180);
- 	}
- 	
- 	else if (Input.GetKey(moveRight)){
- 		rb.MoveRotation(90);
- 	}
- 	
-	else if  (Input.GetKey(moveLeft)){	
- 		rb.MoveRotation(270);
-
- 	}
-	
  	 
- }
+ 
