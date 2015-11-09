@@ -27,13 +27,12 @@ function Start () {
  	}
  	
  	else if (Input.GetKey(moveDown)) {
- 	/*
- 		curSpe +=  (-accel * Time.deltaTime);
- 		if (curSpe > maxSpeed * 0.5){
- 			curSpe = maxSpeed * 0.5;
+ 		curSpe +=  (accel * Time.deltaTime);
+ 		if (-curSpe < maxSpeed * 0.5){
+ 			curSpe = maxSpeed * -0.5;
  		}
  		rb.velocity = transform.up * curSpe;
- 		*/
+ 		
  	}
  	
  	if (Input.GetKey(moveRight)){
