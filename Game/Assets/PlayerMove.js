@@ -4,64 +4,61 @@ var moveUp : KeyCode;
 var moveDown : KeyCode;
 var moveLeft : KeyCode;
 var moveRight : KeyCode;
+var rb : Rigidbody2D;
 
-var Projectile : Rigidbody2D;
-
-var speed : float = 5;
+var speed : float = 10;
 
 function Start () {
+	rb = GetComponent.<Rigidbody2D>();
 
 }
 
  function Update () {
  	//movement
  	if (Input.GetKey(moveUp)){
- 		GetComponent.<Rigidbody2D>().velocity.y = speed;
- 		GetComponent.<Rigidbody2D>().velocity.x = 0;
- 	}
- 	else if (Input.GetKey(moveDown)) {
- 		GetComponent.<Rigidbody2D>().velocity.y = speed * -1;
- 		GetComponent.<Rigidbody2D>().velocity.x = 0;
- 	}
- 	else if (Input.GetKey(moveRight)){
- 		GetComponent.<Rigidbody2D>().velocity.x = speed;
- 		GetComponent.<Rigidbody2D>().velocity.y = 0;
- 	}
-	else if  (Input.GetKey(moveLeft)){	
- 		GetComponent.<Rigidbody2D>().velocity.x = speed * -1;
-  		GetComponent.<Rigidbody2D>().velocity.y = 0;
- 	}
- /**	
- 	else if (Input.GetKeyUp(moveUp)){
- 		rigidbody2D.velocity.y = 0;
- 	}
-  	else if (Input.GetKeyUp(moveDown)){
- 		rigidbody2D.velocity.y = 0;
- 	}
-  	else if (Input.GetKeyUp(moveLeft)){
- 		rigidbody2D.velocity.x = 0;
- 	}
-  	else if (Input.GetKeyUp(moveRight)){
- 		rigidbody2D.velocity.x = 0;
- 	}
- **/	
- 	else{
- 		GetComponent.<Rigidbody2D>().velocity.x = 0;	
- 		GetComponent.<Rigidbody2D>().velocity.y = 0;	
- 	}
- 	
- 	
+ 		rb.velocity.y = speed;
+		rb.MoveRotation(0);
 
- 	//point twards camra
-     var pos = Camera.main.WorldToScreenPoint(transform.position);
-     var dir = Input.mousePosition - pos;
-     var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-     transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward); 
+ 	}
+ 	
+ 	else if (Input.GetKey(moveDown)) {
+ 		rb.velocity.y = speed * -1;
+ 		rb.MoveRotation(180);
+ 	}
+ 	
+ 	else if (Input.GetKey(moveRight)){
+ 		rb.velocity.x = speed;
+ 		rb.MoveRotation(90);
+ 	}
+ 	
+	else if  (Input.GetKey(moveLeft)){	
+ 		rb.velocity.x = speed * -1;
+ 		rb.MoveRotation(270);
+
+ 	}
+	
+ 	 
  }
- 
-function OnCollisionEnter2D(coll: Collision2D) {
-	if (coll.gameObject.tag == "enemy"){
-		Application.LoadLevel (Application.loadedLevel);
-	}
-}
- 
+
+function FixedUpdate (){
+
+ 	if (Input.GetKey(moveUp)){
+		rb.MoveRotation(0);
+
+ 	}
+ 	
+ 	else if (Input.GetKey(moveDown)) {
+ 		rb.MoveRotation(180);
+ 	}
+ 	
+ 	else if (Input.GetKey(moveRight)){
+ 		rb.MoveRotation(90);
+ 	}
+ 	
+	else if  (Input.GetKey(moveLeft)){	
+ 		rb.MoveRotation(270);
+
+ 	}
+	
+ 	 
+ }
