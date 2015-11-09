@@ -28,10 +28,10 @@ function Start () {
  	
  	else if (Input.GetKey(moveDown)) {
  		curSpe +=  (accel * Time.deltaTime);
- 		if (-curSpe < maxSpeed * 0.5){
- 			curSpe = maxSpeed * -0.5;
+ 		if (-curSpe < maxSpeed * -0.5){
+ 			curSpe = maxSpeed * 0.5;
  		}
- 		rb.velocity = transform.up * curSpe;
+ 		rb.velocity = transform.up * -curSpe;
  		
  	}
  	
