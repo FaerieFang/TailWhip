@@ -4,6 +4,8 @@
 var player : GameObject;
 var tog : KeyCode;
 var active : System.Boolean = false;
+var mySkin : GUISkin;
+var miniMap : System.Boolean;
 
 function Start () {
 
@@ -21,3 +23,12 @@ function Update () {
 		transform.position.x = player.transform.position.x;
 	}
 }
+
+ function OnGUI(){
+ 	if (miniMap){
+	    if(mySkin)
+	       GUI.skin = mySkin;
+	    var cam : Camera = transform.GetComponent.<Camera>();
+	    GUI.Box(Rect(cam.pixelRect.x, (Screen.height - cam.pixelRect.yMax), cam.pixelWidth, cam.pixelHeight), "");
+	}
+ }

@@ -35,6 +35,8 @@ function Start () {
  		
  	}
  	
+ 	
+ 	//Reduce Speed if Turning
  	if (Input.GetKey(moveRight)){
  		rb.rotation += turnSpe * -1;
 		maxSpeed = 5;
@@ -51,7 +53,18 @@ function Start () {
 	else if (Input.GetKeyUp(moveLeft)){
 		maxSpeed = 7;
 	}
+	
+	//reduce Turn Speed if not moving
+	if (rb.velocity.magnitude < 1.5){
+		turnSpe = 1;
+	}
+	if (rb.velocity.magnitude >= 1.5){
+		turnSpe = 1.7;
+	}
+	//set VELOCITY veriable
 	curSpe = rb.velocity.magnitude;
+	
+	
 	/* 	 
 	if (Mathf.Abs(curSpe) < 0.4){
 		curSpe = 0;

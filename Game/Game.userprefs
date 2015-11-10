@@ -1,9 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\PS1Script.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PS1Script.js">
     <Files>
-      <File FileName="Assets\PS1Script.js" Line="12" Column="2" />
-      <File FileName="Assets\Scripts\BoatControl.js" Line="15" Column="7" />
+      <File FileName="Assets\Scripts\PS1Script.js" Line="30" Column="78" />
+      <File FileName="Assets\Scripts\BoatControl.js" Line="64" Column="25" />
+      <File FileName="Assets\Scripts\camScript.js" Line="28" Column="12" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
