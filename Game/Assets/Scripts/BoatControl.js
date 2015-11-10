@@ -27,11 +27,11 @@ function Start () {
  	}
  	
  	else if (Input.GetKey(moveDown)) {
- 		curSpe +=  (accel * Time.deltaTime);
- 		if (-curSpe < maxSpeed * -0.5){
- 			curSpe = maxSpeed * 0.5;
+ 		curSpe -=  (accel * Time.deltaTime);
+ 		if (curSpe < maxSpeed * -0.5){
+ 			curSpe = maxSpeed * -0.5;
  		}
- 		rb.velocity = transform.up * -curSpe;
+ 		rb.velocity = transform.up * curSpe;
  		
  	}
  	
@@ -65,7 +65,7 @@ function Start () {
 		turnSpe = 1.7;
 	}
 	//set VELOCITY veriable
-	curSpe = rb.velocity.magnitude;
+	//curSpe = rb.velocity.magnitude;
 	
 	
 	/* 	 

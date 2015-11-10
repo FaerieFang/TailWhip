@@ -8,7 +8,6 @@
 
 - Better Boat Particles <br>
 - Make MiniMap use own Colors <br>
-- Make change of movement from forward to back more smothe <br>
 - Make Boundarys of some kind <br>
 - Water Animation & Texture <br>
 
