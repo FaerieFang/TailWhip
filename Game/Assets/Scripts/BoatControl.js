@@ -46,6 +46,9 @@ function Start () {
 		rb.rotation += turnSpe;
 		maxSpeed = 5;
  	}
+ 	else{
+ 		rb.rotation = rb.rotation;
+ 	}
 	
 	if (Input.GetKeyUp(moveRight)){
 		maxSpeed = 7;
