@@ -1,9 +1,11 @@
 # Project TailWhip
 
+<h5>Wow I already have over 400 lines of code</h5><br>
 
 <h4> KNOWN BUGS </h4>
 
 - Boat running into wall does not set velocity to 0 instantly<br>
+
 
 <h4>Programing To Do List</h4><br>
 
