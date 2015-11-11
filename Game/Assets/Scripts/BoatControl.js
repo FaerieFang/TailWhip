@@ -18,6 +18,7 @@ function Start () {
 }
 function Update () {
 	//Bind Keys
+	forward = true;
  	if (Input.GetKey(moveUp)){
  		forward = true;
  		curSpe +=  accel * Time.deltaTime;
@@ -34,19 +35,9 @@ function Update () {
  		curSpe +=  (-accel * Time.deltaTime);
  		 if (curSpe < maxSpeed * -0.5){
  			curSpe = maxSpeed * -0.5;
- 		}
- 		rb.velocity = transform.up * curSpe;
-
-
- 		
- 	}
- 	if (forward){
-
- 	}
- 	else if (!forward){
-
- 	}
- 	
+ 		 }
+ 		 rb.velocity = transform.up * curSpe;
+	}
  	
  	
  	//Reduce Speed if Turning
@@ -74,22 +65,16 @@ function Update () {
 	if (rb.velocity.magnitude >= 1.5){
 		turnSpe = 1.7;
 	}
-	//Check for functional Backwards movment
-	if (forward){
-		if (curSpe <= rb.velocity.magnitude && curSpe > 0){
-			curSpe = rb.velocity.magnitude;			
-		}
-		else{
-			curSpe = curSpe + (accel * Time.deltaTime);
-		}
-		//rb.velocity.magnitude;
+	//curSpe = rb.velocity.magnitude;
+	
+	//Check to enable Directional Movement
+	if (curSpe > 0.0){
+		curSpe = rb.velocity.magnitude;
 	}
-	else if (!forward){
-		if (curSpe >= rb.velocity.magnitude){
-			curSpe = rb.velocity.magnitude;
-		}
-		else{
-			curSpe = curSpe - (accel * Time.deltaTime);
-		}
+	else if (curSpe <= 0.0 && !forward){
+		curSpe = -rb.velocity.magnitude;
+	}
+	else if (curSpe <= 0.0 && forward){
+		curSpe = -rb.velocity.magnitude;
 	}
 }

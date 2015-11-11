@@ -80,7 +80,7 @@ function Update () {
 	else if (Input.GetKeyUp(moveRight)){
 		GetComponent.<Rigidbody2D>().velocity.x = 0;
 	}
-	/* ******** END MOVEMENT********* */
+	/* ********END MOVEMENT********* */
 
 	
 	if (Input.GetKey(attack)){
