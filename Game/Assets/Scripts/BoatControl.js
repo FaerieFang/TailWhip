@@ -92,5 +92,4 @@ function Update () {
 			curSpe = curSpe - (accel * Time.deltaTime);
 		}
 	}
-	Debug.Log(rb.velocity.magnitude);
 }

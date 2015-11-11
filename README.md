@@ -16,4 +16,4 @@
 
 <h5> Player </h5>
 
-- Make Player Controls <br>
+- Make Player Attack Comand <br>
