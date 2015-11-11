@@ -2,9 +2,9 @@
 
 var player : GameObject;
 var PS : GameObject;
-var rb = player.GetComponent.<Rigidbody2D>();
+var rb : Rigidbody2D;
 function Start () {
-	
+	rb = player.GetComponent.<Rigidbody2D>();
 
 }
 
