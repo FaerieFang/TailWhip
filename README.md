@@ -12,7 +12,6 @@
 <h5> Boat </h5>
 
 - Better Boat Particles <br>
-- Make MiniMap use own Colors <br>
 - Make Boundarys of some kind <br>
 - Water Animation & Texture <br>
 
