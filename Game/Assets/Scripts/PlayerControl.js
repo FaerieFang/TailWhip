@@ -1,8 +1,6 @@
 ﻿#pragma strict
 
 var speed : float;
-
-
 var moveUp : KeyCode;
 var moveDown : KeyCode;
 var moveLeft : KeyCode;
