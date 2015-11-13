@@ -16,7 +16,7 @@ function Update () {
 
 function Open(){
 
-	while (moved < 50 && button.GetComponent(buttonScript).active){
+	while (moved <= 50 && button.GetComponent(buttonScript).active){
 		if (virtical){
 			transform.position.y = transform.position.y + .1;
 		}
@@ -31,7 +31,7 @@ function Open(){
 
 function Close(){
 
-	while (moved > 0 && !button.GetComponent(buttonScript).active){
+	while (moved >= 0 && !button.GetComponent(buttonScript).active){
 		if (virtical){
 			transform.position.y = transform.position.y - .1;
 		}
