@@ -91,5 +91,8 @@ function Attack(){
 
 }
  
+function Test(){
+	Debug.Log("Test");
+}
  
 

@@ -1,13 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerControl.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\buttonScript.js">
     <Files>
-      <File FileName="Assets\Scripts\PlayerControl.js" Line="91" Column="1" />
-      <File FileName="Assets\Scripts\followScript.js" Line="13" Column="29" />
-      <File FileName="Assets\Scripts\ControlScript.js" Line="18" Column="42" />
+      <File FileName="Assets\Scripts\buttonScript.js" Line="31" Column="30" />
+      <File FileName="Assets\Scripts\PlayerControl.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\followScript.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ControlScript.js" Line="1" Column="1" />
       <File FileName="Assets\Scripts\BoatControl.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PS1Script.js" Line="15" Column="2" />
-      <File FileName="Assets\Scripts\camScript.js" Line="26" Column="2" />
+      <File FileName="Assets\Scripts\PS1Script.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\camScript.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\lockedWall.js" Line="33" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

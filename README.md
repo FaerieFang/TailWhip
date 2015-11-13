@@ -9,18 +9,19 @@
 
 <h4>Programing To Do List</h4><br>
 
-<h5> Objects </h5>
-
-- Make a button that opens door when stood on
-- Make object to push on button
-- Enemies
+<h5> Sprites Needed </h5>
+- button
+- Locked wall
+- Push Block
+- Enviroment, walls and background, both water and rock
 
 <h5> Boat </h5>
 
-- Better Boat Particles <br>
-- Make Boundarys of some kind <br>
-- Water Animation & Texture <br>
+- Better Boat Particles
+- Make Boundarys of some kind
+- Water Animation & Texture
 
 <h5> Player </h5>
 
-- Make Player Attack Comand <br>
+- Make Player Attack Comand
+- Add ability to pull pushable blocks
