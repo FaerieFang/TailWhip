@@ -4,8 +4,10 @@ var moveUp : KeyCode;
 var moveDown : KeyCode;
 var moveLeft : KeyCode;
 var moveRight : KeyCode;
+var atk : KeyCode;
 var rb : Rigidbody2D;
 var turnSpe : float;
+var projectile : GameObject;
 
 var curSpe : float;
 var accel : float;
@@ -76,5 +78,16 @@ function Update () {
 	}
 	else if (curSpe <= 0.0 && forward){
 		curSpe = -rb.velocity.magnitude;
+		//end movement
+		
+	}	
+	if (Input.GetKeyDown(atk)){
+		Attack();
 	}
+	
+}
+
+function Attack(){
+	var clone : GameObject;
+	clone = Instantiate(projectile, transform.position, transform.rotation);
 }
