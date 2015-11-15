@@ -9,11 +9,18 @@
 
 <h4>Programing To Do List</h4><br>
 
+<h5> Bombs </h5>
+- Make bombs more relistic phisics
+- Add Wind Feild to Explosion
+- Make limmit on fire speed
+- Realistic arc (?)
+
 <h5> Sprites Needed </h5>
 - button
 - Locked wall
 - Push Block
 - Enviroment, walls and background, both water and rock
+- bombs
 
 <h5> Boat </h5>
 

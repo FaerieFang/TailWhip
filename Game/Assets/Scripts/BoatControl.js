@@ -90,4 +90,6 @@ function Update () {
 function Attack(){
 	var clone : GameObject;
 	clone = Instantiate(projectile, transform.position, transform.rotation);
+	clone.GetComponent(bombScript).first = false;
+	Physics2D.IgnoreCollision(clone.GetComponent.<Collider2D>(), GetComponent.<Collider2D>());
 }
