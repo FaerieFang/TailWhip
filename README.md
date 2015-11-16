@@ -12,8 +12,6 @@
 <h5> Bombs </h5>
 - Make bombs more relistic phisics
 - Add Wind Feild to Explosion
-- Make limmit on fire speed
-- Realistic arc (?)
 
 <h5> Sprites Needed </h5>
 - button
@@ -31,4 +29,4 @@
 <h5> Player </h5>
 
 - Make Player Attack Comand
-- Add ability to pull pushable blocks
+- Add ability to pull pushable blocks (almost done)
