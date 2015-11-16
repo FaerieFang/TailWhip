@@ -6,6 +6,10 @@ var moveDown : KeyCode;
 var moveLeft : KeyCode;
 var moveRight : KeyCode;
 var attack : KeyCode;
+var activate : KeyCode;
+
+var pullBlock : GameObject;
+var pullPos : System.Boolean;
 
 function Start () {
 
@@ -84,15 +88,19 @@ function Update () {
 	if (Input.GetKey(attack)){
 		Attack();
 	}
+	if (Input.GetKey(activate) && pullPos){
+			pullBlock.GetComponent(pullBlockScript).pull = !pullBlock.GetComponent(pullBlockScript).pull;
+	}
 
 }
 
 function Attack(){
 
 }
- 
-function Test(){
-	Debug.Log("Test");
-}
- 
 
+function OnCollisionEnter2D (coll: Collision2D) {
+	if (coll.gameObject.tag == "CanPress"){
+		pullPos = true;
+
+	}
+}

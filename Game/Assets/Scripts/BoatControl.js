@@ -14,6 +14,7 @@ var accel : float;
 var maxSpeed : float;
 var forward : System.Boolean;
 
+var attackTime : float;
 
 function Start () {
 	rb = GetComponent.<Rigidbody2D>();
@@ -82,9 +83,13 @@ function Update () {
 		
 	}	
 	if (Input.GetKeyDown(atk)){
-		Attack();
+		if (attackTime > 1){
+			Attack();
+			attackTime = 0;
+		}
+
 	}
-	
+	attackTime += Time.deltaTime;
 }
 
 function Attack(){
@@ -92,4 +97,5 @@ function Attack(){
 	clone = Instantiate(projectile, transform.position, transform.rotation);
 	clone.GetComponent(bombScript).first = false;
 	Physics2D.IgnoreCollision(clone.GetComponent.<Collider2D>(), GetComponent.<Collider2D>());
+	
 }
