@@ -89,7 +89,12 @@ function Update () {
 		Attack();
 	}
 	if (Input.GetKey(activate) && pullPos){
-			pullBlock.GetComponent(pullBlockScript).pull = !pullBlock.GetComponent(pullBlockScript).pull;
+			speed = 2.5;
+			pullBlock.GetComponent(pullBlockScript).pull = true;
+	}
+	if (Input.GetKeyUp(activate)){
+			pullBlock.GetComponent(pullBlockScript).pull = false;
+			speed = 5;
 	}
 
 }
@@ -102,5 +107,11 @@ function OnCollisionEnter2D (coll: Collision2D) {
 	if (coll.gameObject.tag == "CanPress"){
 		pullPos = true;
 
+	}
+}
+function OnCollisionExit2D (coll: Collision2D) {
+	if (coll.gameObject.tag == "CanPress"){
+		pullPos = false;
+		pullBlock.GetComponent(pullBlockScript).pull = false;
 	}
 }
