@@ -2,6 +2,7 @@
 
 var paused : System.Boolean;
 var MiniMap : GameObject;
+public var backCount : int;
 
 function Start () {
 

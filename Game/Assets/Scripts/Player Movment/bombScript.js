@@ -29,7 +29,7 @@ function Explode(){
 	var PS : GameObject;
 	PS = Instantiate(particles, transform.position, transform.rotation);
 	PS.GetComponent(PS2script).first = false;
-	yield WaitForSeconds (0.1);
+	yield WaitForSeconds (0.01);
 	Destroy (this.gameObject);
 }
 
