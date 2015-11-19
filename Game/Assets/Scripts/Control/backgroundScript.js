@@ -20,11 +20,10 @@ function Start () {
 function Update () {
 
 }
-/*
-function OnTriggernEnter2D (coll: Collider2D){
+
+function OnCollisionEnter2D (coll: Collision2D){
 	if (coll.gameObject.tag == "background"){
-		Debug.Log("test");
+		Debug.Log ("test");
 		Destroy (coll.gameObject);
 	}
 }
-*/

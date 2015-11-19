@@ -5,6 +5,12 @@ var speed : float;
 public var first : System.Boolean;
 
 function Start () {
+	if (first){
+		GetComponent(SpriteRenderer).enabled = false;
+	}
+	else{
+		GetComponent(SpriteRenderer).enabled = true;
+	}
 	GetComponent.<Rigidbody2D>().velocity = transform.up * speed;
 	yield WaitForSeconds (2);
 	if (!first){
