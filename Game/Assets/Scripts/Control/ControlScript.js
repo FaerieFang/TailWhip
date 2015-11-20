@@ -3,6 +3,8 @@
 var paused : System.Boolean;
 var MiniMap : GameObject;
 public var backCount : int;
+var pauseKey : KeyCode;
+var mySkin : GUISkin;
 
 function Start () {
 
@@ -10,25 +12,40 @@ function Start () {
 
 function Update () {
 
-
-}
-
- function OnGUI () {
- 
- 	//In Game GUI
- 	if (GUI.Button (Rect (Screen.width - 70,5,60,20), "Pause")) {
+	 if (Input.GetKeyDown(pauseKey)) {
 		paused = !paused;
+		/*
 		if (paused){
 			Time.timeScale = 0;
 		}
 		else{
 			Time.timeScale = 1;
 		}
+		*/
 	}
+}
+
+ function OnGUI () {
+ 
+ 	//In Game GUI
+ 	//if (GUI.Button (Rect (Screen.width - 70,5,60,20), "Pause")) {
+	//	paused = !paused;
+		/*
+		if (paused){
+			Time.timeScale = 0;
+		}
+		else{
+			Time.timeScale = 1;
+		}
+		*/
+//	}
+	
+
  
  
 	//Pause Menu
-   	if(paused) {
+   	if (paused) {
+   		GUI.skin = mySkin;
 	    // Make a background box
 	    GUI.Box (Rect (10,10,150,90), "Paused");
 	 

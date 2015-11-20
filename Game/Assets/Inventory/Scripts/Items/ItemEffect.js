@@ -24,8 +24,8 @@ function Awake ()
 //This is called when the object should be used.
 function UseEffect () 
 {
-	Debug.LogWarning("<INSERT CUSTOM ACTION HERE>"); //INSERT CUSTOM CODE HERE!
-	
+	//Debug.LogWarning("<INSERT CUSTOM ACTION HERE>"); //INSERT CUSTOM CODE HERE!
+	Debug.Log ("Used Consumeable Item");
 	//Play a sound
 	playersInv.gameObject.SendMessage("PlayDropItemSound", SendMessageOptions.DontRequireReceiver);
 	

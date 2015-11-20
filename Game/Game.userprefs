@@ -1,12 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Control\backgroundScript.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player Movment\PlayerControl.js">
     <Files>
-      <File FileName="Assets\Scripts\Player Movment\bombScript.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Control\backgroundScript.js" Line="24" Column="49" />
+      <File FileName="Assets\Scripts\Player Movment\PlayerControl.js" Line="142" Column="34" />
       <File FileName="Assets\Scripts\Control\ControlScript.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Puzzle Objects\buttonScript.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Player Movment\BoatControl.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

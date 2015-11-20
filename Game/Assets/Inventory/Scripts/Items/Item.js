@@ -46,7 +46,7 @@ function Awake ()
 		FPPickUpFound = true;
 	}
 }
-
+/*
 //When you click an item
 function OnMouseDown()
 {
@@ -56,7 +56,7 @@ function OnMouseDown()
 		PickUpItem();
 	}
 }
-
+*/
 //Picking up the Item.
 function PickUpItem ()
 {
@@ -103,7 +103,7 @@ function MoveMeToThePlayer(itemHolderObject : Transform)
 	canGet = false;
 	
 	//gameObject.SetActive(false);	It's normally best to disable the individual components so we can keep item effects and update functions alive.
-	
+
 	if (GetComponent(MeshRenderer) != null)
 	{
 		GetComponent(MeshRenderer).enabled = false;
@@ -111,13 +111,16 @@ function MoveMeToThePlayer(itemHolderObject : Transform)
 	
 	if (GetComponent(Collider) != null)
 	{
-		GetComponent(Collider).enabled = false;
+		GetComponent(Collider).enabled = false; 
 	}
 	
 	GetComponent("Item").enabled = false;
 	
+	
 	transform.parent = itemHolderObject;
 	transform.localPosition = Vector3.zero;
+	yield WaitForSeconds (1);
+	GetComponent(SpriteRenderer).enabled = false;
 }
 
 //Drops the Item from the Inventory.
@@ -181,4 +184,9 @@ function DelayPhysics ()
 function OnDrawGizmos ()
 {
 	Gizmos.DrawIcon (Vector3(transform.position.x, transform.position.y + 1, transform.position.z), "ItemGizmo.png", true);
+}
+function OnTriggerEnter2D (coll: Collider2D){
+	if (coll.gameObject.tag == "Player"){
+		PickUpItem();
+	}
 }

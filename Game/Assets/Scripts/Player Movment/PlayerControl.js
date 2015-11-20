@@ -11,6 +11,10 @@ var activate : KeyCode;
 var pullBlock : GameObject;
 var pullPos : System.Boolean;
 
+var lifeSprite : Texture;
+var maxLife : int;
+var lifeCount : int;
+var pos : float = .96;
 function Start () {
 
 }
@@ -96,6 +100,12 @@ function Update () {
 			pullBlock.GetComponent(pullBlockScript).pull = false;
 			speed = 5;
 	}
+	
+	/***** LIFE COUNTER ******/
+	if (lifeCount == 0){
+		Death();
+	}
+
 
 }
 
@@ -104,9 +114,20 @@ function Attack(){
 }
 
 function OnCollisionEnter2D (coll: Collision2D) {
+	//pulling blocks
 	if (coll.gameObject.tag == "CanPress"){
 		pullPos = true;
 
+	}
+	
+	//enemys
+	if (coll.gameObject.tag == "enemy"){
+		lifeCount -= 1;
+	}
+	//+life
+	if (coll.gameObject.name == "heart"){
+		lifeCount += 1;
+		Destroy (coll.gameObject);
 	}
 }
 function OnCollisionExit2D (coll: Collision2D) {
@@ -114,4 +135,14 @@ function OnCollisionExit2D (coll: Collision2D) {
 		pullPos = false;
 		pullBlock.GetComponent(pullBlockScript).pull = false;
 	}
+}
+function OnGUI (){
+
+	GUI.DrawTexture(Rect(Screen.width - 70,5,20,20), lifeSprite);
+	GUI.Label(Rect(Screen.width - 64,4,20,20), lifeCount.ToString());
+
+}
+
+function Death (){
+
 }

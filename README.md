@@ -22,7 +22,11 @@
 <h5> Player </h5>
 
 - Make Player Attack Comand
+  
 
 <h5> UI </h5>
 
 - Make Prompt to press space to pull block
+- Make Life have # of hearts, not a string
+- Fix Background Stackings
+- ADD ITEMS!
