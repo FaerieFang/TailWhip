@@ -13,7 +13,7 @@ var pullPos : System.Boolean;
 
 var lifeSprite : Texture;
 var maxLife : int;
-var lifeCount : int;
+public var lifeCount : int;
 var pos : float = .96;
 function Start () {
 
@@ -105,6 +105,9 @@ function Update () {
 	if (lifeCount == 0){
 		Death();
 	}
+	if (lifeCount > maxLife){
+		lifeCount = maxLife;
+	}
 
 
 }
@@ -121,7 +124,7 @@ function OnCollisionEnter2D (coll: Collision2D) {
 	}
 	
 	//enemys
-	if (coll.gameObject.tag == "enemy"){
+	if (coll.gameObject.tag == "bomb"){
 		lifeCount -= 1;
 	}
 	//+life

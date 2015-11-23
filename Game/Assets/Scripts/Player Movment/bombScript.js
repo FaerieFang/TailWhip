@@ -23,7 +23,7 @@ function Update () {
 }
 
 function OnCollisionEnter2D (coll: Collision2D) {
-	if (coll.gameObject.tag == "enemy"){
+	if (coll.gameObject.tag == "enemy" || coll.gameObject.tag == "player" || coll.gameObject.tag == "bomb"){
 		Explode();
 	}
 	if (coll.gameObject.tag == "Obs"){

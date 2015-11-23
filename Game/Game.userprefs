@@ -1,9 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player Movment\PlayerControl.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\AI\enemyBoatAI.js">
     <Files>
-      <File FileName="Assets\Scripts\Player Movment\PlayerControl.js" Line="142" Column="34" />
-      <File FileName="Assets\Scripts\Control\ControlScript.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\AI\enemyBoatAI.js" Line="24" Column="58" />
+      <File FileName="Assets\Scripts\Player Movment\PlayerControl.js" Line="103" Column="2" />
+      <File FileName="Assets\Scripts\Player Movment\BoatControl.js" Line="101" Column="2" />
+      <File FileName="Assets\Scripts\Player Movment\bombScript.js" Line="26" Column="103" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

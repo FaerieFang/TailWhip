@@ -16,6 +16,10 @@ var forward : System.Boolean;
 
 var attackTime : float;
 
+var lifeSprite : Texture;
+var maxLife : int;
+public var lifeCount : int;
+
 function Start () {
 	rb = GetComponent.<Rigidbody2D>();
 }
@@ -90,6 +94,13 @@ function Update () {
 
 	}
 	attackTime += Time.deltaTime;
+	//Life Stuff
+	if (lifeCount == 0){
+		Death();
+	}
+	if (lifeCount > maxLife){
+		lifeCount = maxLife;
+	}
 }
 
 function Attack(){
@@ -98,4 +109,25 @@ function Attack(){
 	clone.GetComponent(bombScript).first = false;
 	Physics2D.IgnoreCollision(clone.GetComponent.<Collider2D>(), GetComponent.<Collider2D>());
 	
+}
+function OnCollisionEnter2D (coll: Collision2D) {
+	//enemys
+	if (coll.gameObject.tag == "bomb"){
+		lifeCount -= 1;
+	}
+	//+life
+	if (coll.gameObject.name == "heart"){
+		lifeCount += 1;
+		Destroy (coll.gameObject);
+	}
+}
+function OnGUI (){
+
+	GUI.DrawTexture(Rect(Screen.width - 70,5,20,20), lifeSprite);
+	GUI.Label(Rect(Screen.width - 64,4,20,20), lifeCount.ToString());
+
+}
+
+function Death (){
+
 }
