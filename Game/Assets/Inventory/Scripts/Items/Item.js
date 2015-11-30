@@ -100,6 +100,7 @@ function PickUpItem ()
 //Moves the item to the Players 'itemHolderObject' and disables it. In most cases this will just be the Inventory object.
 function MoveMeToThePlayer(itemHolderObject : Transform)
 {
+	GetComponent(BoxCollider2D).enabled = false;
 	canGet = false;
 	
 	//gameObject.SetActive(false);	It's normally best to disable the individual components so we can keep item effects and update functions alive.
@@ -140,7 +141,8 @@ function DropMeFromThePlayer(makeDuplicate : boolean)
 		{
 			GetComponent(Collider).enabled = true;
 		}
-	
+		GetComponent(BoxCollider2D).enabled = true;
+		GetComponent(SpriteRenderer).enabled = true;
 		GetComponent("Item").enabled = true;
 		
 		transform.parent = null;

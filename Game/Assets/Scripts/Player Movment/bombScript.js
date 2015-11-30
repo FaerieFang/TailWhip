@@ -11,7 +11,7 @@ function Start () {
 	else{
 		GetComponent(SpriteRenderer).enabled = true;
 	}
-	GetComponent.<Rigidbody2D>().velocity = transform.up * speed;
+	GetComponent.<Rigidbody2D>().velocity = transform.right * speed;
 	yield WaitForSeconds (2);
 	if (!first){
 		Destroy (this.gameObject);
@@ -23,10 +23,7 @@ function Update () {
 }
 
 function OnCollisionEnter2D (coll: Collision2D) {
-	if (coll.gameObject.tag == "enemy" || coll.gameObject.tag == "player" || coll.gameObject.tag == "bomb"){
-		Explode();
-	}
-	if (coll.gameObject.tag == "Obs"){
+	if (coll.gameObject.tag == "enemy" || coll.gameObject.tag == "Player" || coll.gameObject.tag == "bomb" || coll.gameObject.tag == "Obs"){
 		Explode();
 	}
 }

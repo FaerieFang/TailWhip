@@ -16,12 +16,13 @@ function Update () {
 	/**** main loop ****/
 
 	transform.LookAt(player.transform.position);
+
 	transform.rotation.x = 0;
 	transform.rotation.y = 0;
 
     if(Vector3.Distance(transform.position,player.transform.position) >= MinDist){
     	curSpe +=  accel * Time.deltaTime;
-    	GetComponent.<Rigidbody2D>().velocity = transform.up * curSpe;
+    	GetComponent.<Rigidbody2D>().velocity = transform.right * curSpe;
     }
     if(Vector3.Distance(transform.position,player.transform.position) < MinDist && attackTime > 1){
     	Fire();
