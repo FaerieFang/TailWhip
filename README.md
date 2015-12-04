@@ -1,7 +1,13 @@
 # Project TailWhip
 
 <h3>Programing To Do List</h3><br>
-<h3> DON"T FORGET NEW 2D ENVIROMENT TOOLS </h3>
+
+
+<br>
+<h3> Highest Priority </h3>
+- Make all veribles stored in a controler gameobject that transfers between rooms.
+- Use NEW 2D enviroment tools to make background and other features.
+
 <h4> Primary </h4>
 
 -Find a way to have variables (Life, maxLife, Items) transfer bettween multiple rooms and between boat and player object.
@@ -24,5 +30,4 @@
 
 - Make Prompt to press space to pull block
 - Make Life have # of hearts, not a string
-- Fix Background Stackings
 - ADD ITEMS!

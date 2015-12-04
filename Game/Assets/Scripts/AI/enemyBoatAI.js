@@ -24,7 +24,7 @@ function Update () {
     	curSpe +=  accel * Time.deltaTime;
     	GetComponent.<Rigidbody2D>().velocity = transform.right * curSpe;
     }
-    if(Vector3.Distance(transform.position,player.transform.position) < MinDist && attackTime > 1){
+    if(Vector3.Distance(transform.position,player.transform.position) < MinDist && attackTime > 2){
     	Fire();
     	attackTime = 0;
     }

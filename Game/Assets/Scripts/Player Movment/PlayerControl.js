@@ -13,8 +13,10 @@ var pullPos : System.Boolean;
 
 var lifeSprite : Texture;
 var maxLife : int;
+var canDamage : System.Boolean = true;
 public var lifeCount : int;
 var pos : float = .96;
+
 function Start () {
 
 }
@@ -120,12 +122,12 @@ function OnCollisionEnter2D (coll: Collision2D) {
 	//pulling blocks
 	if (coll.gameObject.tag == "CanPress"){
 		pullPos = true;
-
 	}
-	
 	//enemys
-	if (coll.gameObject.tag == "bomb"){
+	if (coll.gameObject.tag == "enemy" && canDamage){
 		lifeCount -= 1;
+		canDamage = false;
+		Damaged();
 	}
 	//+life
 	if (coll.gameObject.name == "heart"){
@@ -148,4 +150,26 @@ function OnGUI (){
 
 function Death (){
 
+}
+
+function Damaged (){
+	
+	var i : int = 0;
+	GetComponent(SpriteRenderer).enabled = false;
+	yield WaitForSeconds (0.2);
+	GetComponent(SpriteRenderer).enabled = true;
+	yield WaitForSeconds (0.2);
+	GetComponent(SpriteRenderer).enabled = false;
+	yield WaitForSeconds (0.2);
+	GetComponent(SpriteRenderer).enabled = true;
+	yield WaitForSeconds (0.2);
+	GetComponent(SpriteRenderer).enabled = false;
+	yield WaitForSeconds (0.2);
+	GetComponent(SpriteRenderer).enabled = true;
+	yield WaitForSeconds (0.2);
+	GetComponent(SpriteRenderer).enabled = false;
+	yield WaitForSeconds (0.2);
+	GetComponent(SpriteRenderer).enabled = true;
+
+	canDamage = true;
 }

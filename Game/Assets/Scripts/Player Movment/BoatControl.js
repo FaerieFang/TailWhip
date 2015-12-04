@@ -18,6 +18,8 @@ var attackTime : float;
 
 var lifeSprite : Texture;
 var maxLife : int;
+
+var canDamage : System.Boolean = true;
 public var lifeCount : int;
 
 function Start () {
@@ -101,6 +103,7 @@ function Update () {
 	if (lifeCount > maxLife){
 		lifeCount = maxLife;
 	}
+
 }
 
 function Attack(){
@@ -112,8 +115,13 @@ function Attack(){
 }
 function OnCollisionEnter2D (coll: Collision2D) {
 	//enemys
-	if (coll.gameObject.tag == "bomb"){
+	if (coll.gameObject.tag == "bomb" && canDamage){
 		lifeCount -= 1;
+		canDamage = false;
+		Damaged();
+	}
+	if (coll.gameObject.tag == "bomb" && !canDamage){
+		Physics2D.IgnoreCollision(coll.gameObject.GetComponent.<Collider2D>(), GetComponent.<Collider2D>());
 	}
 	//+life
 	if (coll.gameObject.name == "heart"){
@@ -130,4 +138,26 @@ function OnGUI (){
 
 function Death (){
 
+}
+
+function Damaged (){
+	
+	var i : int = 0;
+	GetComponent(SpriteRenderer).enabled = false;
+	yield WaitForSeconds (0.2);
+	GetComponent(SpriteRenderer).enabled = true;
+	yield WaitForSeconds (0.2);
+	GetComponent(SpriteRenderer).enabled = false;
+	yield WaitForSeconds (0.2);
+	GetComponent(SpriteRenderer).enabled = true;
+	yield WaitForSeconds (0.2);
+	GetComponent(SpriteRenderer).enabled = false;
+	yield WaitForSeconds (0.2);
+	GetComponent(SpriteRenderer).enabled = true;
+	yield WaitForSeconds (0.2);
+	GetComponent(SpriteRenderer).enabled = false;
+	yield WaitForSeconds (0.2);
+	GetComponent(SpriteRenderer).enabled = true;
+
+	canDamage = true;
 }
