@@ -1,7 +1,7 @@
 # Project TailWhip
 
 <h3>Programing To Do List</h3><br>
-
+<h3> DON"T FORGET NEW 2D ENVIROMENT TOOLS </h3>
 <h4> Primary </h4>
 
 -Find a way to have variables (Life, maxLife, Items) transfer bettween multiple rooms and between boat and player object.
