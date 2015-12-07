@@ -15,15 +15,20 @@ var maxSpeed : float;
 var forward : System.Boolean;
 
 var attackTime : float;
-
+var controler : GameObject;
 var lifeSprite : Texture;
-var maxLife : int;
+public var maxLife : int;
 
 var canDamage : System.Boolean = true;
 public var lifeCount : int;
 
 function Start () {
+	controler = GameObject.Find("Controler");
 	rb = GetComponent.<Rigidbody2D>();
+	yield WaitForSeconds (0.01);
+	maxLife = controler.GetComponent(veriableScript).maxLife;
+	lifeCount = controler.GetComponent(veriableScript).maxLife;
+
 }
 function Update () {
 	//Bind Keys
@@ -119,6 +124,7 @@ function OnCollisionEnter2D (coll: Collision2D) {
 		lifeCount -= 1;
 		canDamage = false;
 		Damaged();
+		
 	}
 	if (coll.gameObject.tag == "bomb" && !canDamage){
 		Physics2D.IgnoreCollision(coll.gameObject.GetComponent.<Collider2D>(), GetComponent.<Collider2D>());
@@ -161,3 +167,4 @@ function Damaged (){
 
 	canDamage = true;
 }
+//controler.GetComponent(veriableScript).Unload(lifeCount, maxLife);

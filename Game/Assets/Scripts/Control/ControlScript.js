@@ -12,6 +12,10 @@ function Start () {
 
 function Update () {
 
+	if (GameObject.Find("MiniMapCam")){
+		MiniMap = GameObject.Find("MiniMapCam");
+	}
+
 	 if (Input.GetKeyDown(pauseKey)) {
 		paused = !paused;
 		/*

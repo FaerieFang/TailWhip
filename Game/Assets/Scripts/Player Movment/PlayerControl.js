@@ -10,15 +10,17 @@ var activate : KeyCode;
 
 var pullBlock : GameObject;
 var pullPos : System.Boolean;
-
+var controler : GameObject;
 var lifeSprite : Texture;
-var maxLife : int;
-var canDamage : System.Boolean = true;
+public var maxLife : int;
+public var canDamage : System.Boolean = true;
 public var lifeCount : int;
-var pos : float = .96;
 
 function Start () {
-
+	controler = GameObject.Find("Controler");
+	yield WaitForSeconds (0.01);
+	maxLife = controler.GetComponent(veriableScript).maxLife;
+	lifeCount = controler.GetComponent(veriableScript).lifeCount;
 }
 
 function Update () {
@@ -110,8 +112,6 @@ function Update () {
 	if (lifeCount > maxLife){
 		lifeCount = maxLife;
 	}
-
-
 }
 
 function Attack(){
@@ -142,10 +142,8 @@ function OnCollisionExit2D (coll: Collision2D) {
 	}
 }
 function OnGUI (){
-
 	GUI.DrawTexture(Rect(Screen.width - 70,5,20,20), lifeSprite);
 	GUI.Label(Rect(Screen.width - 64,4,20,20), lifeCount.ToString());
-
 }
 
 function Death (){
@@ -154,7 +152,6 @@ function Death (){
 
 function Damaged (){
 	
-	var i : int = 0;
 	GetComponent(SpriteRenderer).enabled = false;
 	yield WaitForSeconds (0.2);
 	GetComponent(SpriteRenderer).enabled = true;
@@ -170,6 +167,5 @@ function Damaged (){
 	GetComponent(SpriteRenderer).enabled = false;
 	yield WaitForSeconds (0.2);
 	GetComponent(SpriteRenderer).enabled = true;
-
 	canDamage = true;
 }

@@ -12,7 +12,7 @@ function Update () {
 	transform.position.y = player.transform.position.y;
 	transform.position.x = player.transform.position.x;
 	
-	transform.rotation = player.transform.rotation;
+	transform.rotation.z = player.transform.rotation.z;
 	
 	//changes based on movement of boat
 	
@@ -27,6 +27,6 @@ function Update () {
 	}
 	else{
 		PS.GetComponent.<ParticleSystem>().emissionRate = rb.velocity.magnitude * 5;
-		PS.GetComponent.<ParticleSystem>().startSpeed = rb.velocity.magnitude * 3.2;
+		PS.GetComponent.<ParticleSystem>().startSpeed = rb.velocity.magnitude * 0.9;
 	}
 }
