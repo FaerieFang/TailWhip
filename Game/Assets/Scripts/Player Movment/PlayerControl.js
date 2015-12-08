@@ -16,6 +16,12 @@ public var maxLife : int;
 public var canDamage : System.Boolean = true;
 public var lifeCount : int;
 
+public var end : System.Boolean;
+var contEnabled : System.Boolean = true;
+var hookshotPrefab : GameObject;
+var fireHook : KeyCode;
+
+
 function Start () {
 	controler = GameObject.Find("Controler");
 	yield WaitForSeconds (0.01);
@@ -26,73 +32,79 @@ function Start () {
 function Update () {
 
 	/* ********MOVEMENT********* */
-	if (Input.GetKey(moveUp)){
-		GetComponent.<Rigidbody2D>().velocity.y = speed;
-		if (Input.GetKey(moveLeft)){
-			GetComponent.<Rigidbody2D>().velocity.x = speed * -1;
-		}
-		if (Input.GetKey(moveDown)){
-			GetComponent.<Rigidbody2D>().velocity.y = speed * -1;
-		}
-		if (Input.GetKey(moveRight)){
-			GetComponent.<Rigidbody2D>().velocity.x = speed;
-		}		
-	}
-	else if (Input.GetKey(moveDown)){
-		GetComponent.<Rigidbody2D>().velocity.y = speed * -1;
-		if (Input.GetKey(moveLeft)){
-			GetComponent.<Rigidbody2D>().velocity.x = speed * -1;
-		}
-		if (Input.GetKey(moveRight)){
-			GetComponent.<Rigidbody2D>().velocity.x = speed;
-		}
+	if (contEnabled){
 		if (Input.GetKey(moveUp)){
 			GetComponent.<Rigidbody2D>().velocity.y = speed;
-		}		
-	}
-	else if (Input.GetKey(moveLeft)){
-		GetComponent.<Rigidbody2D>().velocity.x = speed * -1;
-		if (Input.GetKey(moveRight)){
-			GetComponent.<Rigidbody2D>().velocity.x = speed;
+			if (Input.GetKey(moveLeft)){
+				GetComponent.<Rigidbody2D>().velocity.x = speed * -1;
+			}
+			if (Input.GetKey(moveDown)){
+				GetComponent.<Rigidbody2D>().velocity.y = speed * -1;
+			}
+			if (Input.GetKey(moveRight)){
+				GetComponent.<Rigidbody2D>().velocity.x = speed;
+			}		
 		}
-		if (Input.GetKey(moveDown)){
+		else if (Input.GetKey(moveDown)){
 			GetComponent.<Rigidbody2D>().velocity.y = speed * -1;
+			if (Input.GetKey(moveLeft)){
+				GetComponent.<Rigidbody2D>().velocity.x = speed * -1;
+			}
+			if (Input.GetKey(moveRight)){
+				GetComponent.<Rigidbody2D>().velocity.x = speed;
+			}
+			if (Input.GetKey(moveUp)){
+				GetComponent.<Rigidbody2D>().velocity.y = speed;
+			}		
 		}
-		if (Input.GetKey(moveUp)){
-			GetComponent.<Rigidbody2D>().velocity.y = speed;
-		}				
-	}
-	else if (Input.GetKey(moveRight)){
-		GetComponent.<Rigidbody2D>().velocity.x = speed;
-		if (Input.GetKey(moveLeft)){
+		else if (Input.GetKey(moveLeft)){
 			GetComponent.<Rigidbody2D>().velocity.x = speed * -1;
+			if (Input.GetKey(moveRight)){
+				GetComponent.<Rigidbody2D>().velocity.x = speed;
+			}
+			if (Input.GetKey(moveDown)){
+				GetComponent.<Rigidbody2D>().velocity.y = speed * -1;
+			}
+			if (Input.GetKey(moveUp)){
+				GetComponent.<Rigidbody2D>().velocity.y = speed;
+			}				
 		}
-		if (Input.GetKey(moveDown)){
-			GetComponent.<Rigidbody2D>().velocity.y = speed * -1;
+		else if (Input.GetKey(moveRight)){
+			GetComponent.<Rigidbody2D>().velocity.x = speed;
+			if (Input.GetKey(moveLeft)){
+				GetComponent.<Rigidbody2D>().velocity.x = speed * -1;
+			}
+			if (Input.GetKey(moveDown)){
+				GetComponent.<Rigidbody2D>().velocity.y = speed * -1;
+			}
+			if (Input.GetKey(moveUp)){
+				GetComponent.<Rigidbody2D>().velocity.y = speed;
+			}		
 		}
-		if (Input.GetKey(moveUp)){
-			GetComponent.<Rigidbody2D>().velocity.y = speed;
-		}		
+		else{
+			GetComponent.<Rigidbody2D>().velocity.x = 0;
+			GetComponent.<Rigidbody2D>().velocity.y = 0;
+		}
+		if (Input.GetKeyUp(moveUp)){
+			GetComponent.<Rigidbody2D>().velocity.y = 0;	
+		}
+		else if (Input.GetKeyUp(moveDown)){
+			GetComponent.<Rigidbody2D>().velocity.y = 0;	
+		}
+		else if (Input.GetKeyUp(moveLeft)){
+			GetComponent.<Rigidbody2D>().velocity.x = 0;	
+		}
+		else if (Input.GetKeyUp(moveRight)){
+			GetComponent.<Rigidbody2D>().velocity.x = 0;
+		}
+	/* ********END MOVEMENT********* */
 	}
-	else{
+	
+	if (Input.GetKeyDown(fireHook)){
+		Hookshot();
 		GetComponent.<Rigidbody2D>().velocity.x = 0;
 		GetComponent.<Rigidbody2D>().velocity.y = 0;
 	}
-	if (Input.GetKeyUp(moveUp)){
-		GetComponent.<Rigidbody2D>().velocity.y = 0;	
-	}
-	else if (Input.GetKeyUp(moveDown)){
-		GetComponent.<Rigidbody2D>().velocity.y = 0;	
-	}
-	else if (Input.GetKeyUp(moveLeft)){
-		GetComponent.<Rigidbody2D>().velocity.x = 0;	
-	}
-	else if (Input.GetKeyUp(moveRight)){
-		GetComponent.<Rigidbody2D>().velocity.x = 0;
-	}
-	/* ********END MOVEMENT********* */
-
-	
 	if (Input.GetKey(attack)){
 		Attack();
 	}
@@ -134,11 +146,20 @@ function OnCollisionEnter2D (coll: Collision2D) {
 		lifeCount += 1;
 		Destroy (coll.gameObject);
 	}
+
 }
 function OnCollisionExit2D (coll: Collision2D) {
 	if (coll.gameObject.tag == "CanPress"){
 		pullPos = false;
 		pullBlock.GetComponent(pullBlockScript).pull = false;
+	}
+}
+function OnTriggerEnter2D (coll: Collider2D){
+	if (coll.gameObject.name == "HookTrail(Clone)"){
+		if (end){
+			transform.position = coll.transform.position;
+			Destroy (coll.gameObject);
+		}
 	}
 }
 function OnGUI (){
@@ -168,4 +189,16 @@ function Damaged (){
 	yield WaitForSeconds (0.2);
 	GetComponent(SpriteRenderer).enabled = true;
 	canDamage = true;
+}
+//**** ITEM FUNCTIONS ****//
+
+function Hookshot (){
+	contEnabled = false;
+	var clone : GameObject;
+	clone = Instantiate(hookshotPrefab, transform.position, transform.rotation);
+	clone.GetComponent(hookshot).first = false;
+	clone.GetComponent(hookshotTwo).first = false;
+	Physics2D.IgnoreCollision(clone.GetComponent.<Collider2D>(), GetComponent.<Collider2D>());
+	yield WaitForSeconds (1);
+	contEnabled = true;
 }

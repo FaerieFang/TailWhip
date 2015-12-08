@@ -4,6 +4,12 @@
 
 <h3> Highest Priority </h3>
 - Use NEW 2D enviroment tools to make background and other features.
+- Seperate functions into own scripts
+<h5> Hookshot </h5>
+
+- Bugs
+	- Make creation coninus
+	- Make collsion with player & hokshot possible
 
 <h5> AI </h5>
 

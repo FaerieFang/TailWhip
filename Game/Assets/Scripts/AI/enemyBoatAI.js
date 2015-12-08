@@ -8,15 +8,16 @@ var projectile : GameObject;
 var attackTime : float;
 var MinDist : float;
 var MaxDist : float;
+var canRotate : System.Boolean = true;
 function Start () { 
 
 }
 
 function Update () {
 	/**** main loop ****/
-
-	transform.LookAt(player.transform.position);
-
+	if (canRotate){
+		transform.LookAt(player.transform.position);
+	}
 	transform.rotation.x = 0;
 	transform.rotation.y = 0;
 
@@ -45,10 +46,13 @@ function Update () {
 }
 
 function Fire () {
+	canRotate = false;
 	var clone : GameObject;
 	clone = Instantiate(projectile, transform.position, transform.rotation);
 	clone.GetComponent(bombScript).first = false;
 	Physics2D.IgnoreCollision(clone.GetComponent.<Collider2D>(), GetComponent.<Collider2D>());
+	yield WaitForSeconds (1);
+	canRotate = true;
 }
 function OnCollisionEnter2D (coll: Collision2D) {
 	if (coll.gameObject.tag == "bomb"){
