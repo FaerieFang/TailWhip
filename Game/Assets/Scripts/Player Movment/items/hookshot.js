@@ -5,7 +5,6 @@ var prefab : GameObject;
 public var first : System.Boolean;
 var player : GameObject;
 
-var count : int;
 var dir : int; // up = 1, right = 2, down = 3, left = 4
 var up : KeyCode;
 var left : KeyCode;
@@ -23,19 +22,20 @@ function Start () {
 		clone = Instantiate(prefab, transform.position, transform.rotation);
 		Physics2D.IgnoreCollision(clone.GetComponent.<Collider2D>(), GetComponent.<Collider2D>());
 	}
-	count = 0;
 	GetComponent.<Rigidbody2D>().velocity = transform.up * speed;
 }
 
 function Update () {
-	if (count >= 1){
 		if (!first){
 			var clone : GameObject;
 			clone = Instantiate(prefab, transform.position, transform.rotation);
 			Physics2D.IgnoreCollision(clone.GetComponent.<Collider2D>(), GetComponent.<Collider2D>());
-			count = 0;
 		}
-	}
+		if (!first){
+			///var clone : GameObject;
+			clone = Instantiate(prefab, transform.position, transform.rotation);
+			Physics2D.IgnoreCollision(clone.GetComponent.<Collider2D>(), GetComponent.<Collider2D>());
+		}
 	
 	/****movment****/
 	if (dir == 1){
@@ -78,6 +78,5 @@ function Update () {
 			dir = 3;
 		}
 	}
-	count += 1;
 }
 

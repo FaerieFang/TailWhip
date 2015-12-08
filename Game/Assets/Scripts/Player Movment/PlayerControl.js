@@ -17,10 +17,10 @@ public var canDamage : System.Boolean = true;
 public var lifeCount : int;
 
 public var end : System.Boolean;
-var contEnabled : System.Boolean = true;
+public var contEnabled : System.Boolean = true;
 var hookshotPrefab : GameObject;
 var fireHook : KeyCode;
-
+public var hookDone : System.Boolean;
 
 function Start () {
 	controler = GameObject.Find("Controler");
@@ -124,7 +124,16 @@ function Update () {
 	if (lifeCount > maxLife){
 		lifeCount = maxLife;
 	}
+	
+	if (!hookDone && GameObject.Find("Hookshot(Clone)") != null){
+		contEnabled = false;
+	}
+	if (hookDone){
+		Destroy (GameObject.Find("hookTrail(Clone)"));
+		Destroy (GameObject.Find("hookTrail(Clone)(Clone)"));
+	}
 }
+
 
 function Attack(){
 
@@ -158,6 +167,9 @@ function OnTriggerEnter2D (coll: Collider2D){
 	if (coll.gameObject.name == "HookTrail(Clone)"){
 		if (end){
 			transform.position = coll.transform.position;
+			Destroy (coll.gameObject);
+		}
+		else{
 			Destroy (coll.gameObject);
 		}
 	}
@@ -199,6 +211,5 @@ function Hookshot (){
 	clone.GetComponent(hookshot).first = false;
 	clone.GetComponent(hookshotTwo).first = false;
 	Physics2D.IgnoreCollision(clone.GetComponent.<Collider2D>(), GetComponent.<Collider2D>());
-	yield WaitForSeconds (1);
-	contEnabled = true;
+
 }
