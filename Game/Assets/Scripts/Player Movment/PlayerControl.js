@@ -166,10 +166,16 @@ function OnCollisionExit2D (coll: Collision2D) {
 function OnTriggerEnter2D (coll: Collider2D){
 	if (coll.gameObject.name == "HookTrail(Clone)"){
 		if (end){
-			transform.position = coll.transform.position;
+			transform.position.x = coll.transform.position.x;
+			transform.position.y = coll.transform.position.y;
 			Destroy (coll.gameObject);
 		}
-		else{
+	}
+}
+function OnTriggerStay2D (coll: Collider2D){
+	if (coll.gameObject.name == "HookTrail(Clone)"){
+		if (end){
+			transform.position = coll.transform.position;
 			Destroy (coll.gameObject);
 		}
 	}
