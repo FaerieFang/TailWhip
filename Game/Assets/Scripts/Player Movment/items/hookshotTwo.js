@@ -4,6 +4,7 @@ var player : GameObject;
 function OnCollisionEnter2D (coll: Collision2D) {
 	if (coll.gameObject.tag == "Obs"){
 		if (!first){
+			player.SendMessage("GoToHookshot");
 			player.GetComponent(PlayerControl).end = true;
 			GetComponent(hookshot).enabled = false;
 			Physics2D.IgnoreCollision(player.GetComponent.<Collider2D>(), GetComponent.<Collider2D>(), false);
@@ -18,4 +19,7 @@ function OnCollisionEnter2D (coll: Collision2D) {
 			Destroy (this.gameObject);
 
 	}
+}
+function Start (){
+	GetComponent(hookshot).enabled = true;	
 }

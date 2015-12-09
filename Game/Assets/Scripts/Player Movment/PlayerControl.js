@@ -1,5 +1,5 @@
 ﻿#pragma strict
-
+//movement
 var speed : float;
 var moveUp : KeyCode;
 var moveDown : KeyCode;
@@ -8,19 +8,27 @@ var moveRight : KeyCode;
 var attack : KeyCode;
 var activate : KeyCode;
 
+//pushing
 var pullBlock : GameObject;
 var pullPos : System.Boolean;
 var controler : GameObject;
+
+//life
 var lifeSprite : Texture;
 public var maxLife : int;
 public var canDamage : System.Boolean = true;
 public var lifeCount : int;
 
+//hookshot
 public var end : System.Boolean;
 public var contEnabled : System.Boolean = true;
 var hookshotPrefab : GameObject;
 var fireHook : KeyCode;
 public var hookDone : System.Boolean;
+var times = new Array ();
+var directions = new Array ();
+var dir : int; // up = 1, right = 2, down = 3, left = 4
+var vArray = new Array();
 
 function Start () {
 	controler = GameObject.Find("Controler");
@@ -124,14 +132,6 @@ function Update () {
 	if (lifeCount > maxLife){
 		lifeCount = maxLife;
 	}
-	
-	if (!hookDone && GameObject.Find("Hookshot(Clone)") != null){
-		contEnabled = false;
-	}
-	if (hookDone){
-		Destroy (GameObject.Find("hookTrail(Clone)"));
-		Destroy (GameObject.Find("hookTrail(Clone)(Clone)"));
-	}
 }
 
 
@@ -165,21 +165,10 @@ function OnCollisionExit2D (coll: Collision2D) {
 }
 function OnTriggerEnter2D (coll: Collider2D){
 	if (coll.gameObject.name == "HookTrail(Clone)"){
-		if (end){
-			transform.position.x = coll.transform.position.x;
-			transform.position.y = coll.transform.position.y;
-			Destroy (coll.gameObject);
-		}
+		Destroy (coll.gameObject);
 	}
 }
-function OnTriggerStay2D (coll: Collider2D){
-	if (coll.gameObject.name == "HookTrail(Clone)"){
-		if (end){
-			transform.position = coll.transform.position;
-			Destroy (coll.gameObject);
-		}
-	}
-}
+
 function OnGUI (){
 	GUI.DrawTexture(Rect(Screen.width - 70,5,20,20), lifeSprite);
 	GUI.Label(Rect(Screen.width - 64,4,20,20), lifeCount.ToString());
@@ -211,11 +200,56 @@ function Damaged (){
 //**** ITEM FUNCTIONS ****//
 
 function Hookshot (){
-	contEnabled = false;
-	var clone : GameObject;
-	clone = Instantiate(hookshotPrefab, transform.position, transform.rotation);
-	clone.GetComponent(hookshot).first = false;
-	clone.GetComponent(hookshotTwo).first = false;
-	Physics2D.IgnoreCollision(clone.GetComponent.<Collider2D>(), GetComponent.<Collider2D>());
+	if (contEnabled){
+		contEnabled = false;
+		var clone : GameObject;
+		clone = Instantiate(hookshotPrefab, transform.position, transform.rotation);
+		clone.GetComponent(hookshot).first = false;
+		clone.GetComponent(hookshot).times.Clear();
+		clone.GetComponent(hookshot).directions.Clear();
+		clone.GetComponent(hookshot).pushTime = 0;
+		clone.GetComponent(hookshotTwo).first = false;
+		Physics2D.IgnoreCollision(clone.GetComponent.<Collider2D>(), GetComponent.<Collider2D>());
+	}
 
 }
+
+function GoToHookshot (){
+	times = hookshotPrefab.GetComponent(hookshot).times;
+	directions = hookshotPrefab.GetComponent(hookshot).directions;
+
+	for (var i = 0; i < times.length; i++) {
+		dir = directions[i];
+		if (dir == 1){
+			GetComponent.<Rigidbody2D>().velocity = transform.up * 10;
+		}
+		else if (dir == 2){
+			GetComponent.<Rigidbody2D>().velocity = transform.right * 10;
+		}
+		else if (dir == 3){
+			GetComponent.<Rigidbody2D>().velocity = transform.up * -10;
+		}
+		else if (dir == 4){
+			GetComponent.<Rigidbody2D>().velocity = transform.right * -10;
+		}
+		Debug.Log(times[i]);
+		yield WaitForSeconds (times[i]);
+	}
+	contEnabled = true;
+}
+
+
+/*
+function GoToHookshot (){
+	vArray = hookshotPrefab.GetComponent(hookshot).xArray;
+	for (var i = 0; i < times.length; i++) {
+		transform.LookAt(vArray[i]);
+		GetComponent.<Rigidbody2D>().velocity = transform.up * 10;
+		while (transform.position != vArray[i]){
+		
+		}
+	}
+	transform.rotation.z = 0;
+	contEnabled = true;
+}
+*/
