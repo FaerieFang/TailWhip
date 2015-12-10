@@ -20,14 +20,9 @@ public var canDamage : System.Boolean = true;
 public var lifeCount : int;
 
 //hookshot
-public var end : System.Boolean;
 public var contEnabled : System.Boolean = true;
 var hookshotPrefab : GameObject;
 var fireHook : KeyCode;
-public var hookDone : System.Boolean;
-var times = new Array ();
-var directions = new Array ();
-var dir : int; // up = 1, right = 2, down = 3, left = 4
 var vArray = new Array();
 
 function Start () {
@@ -205,51 +200,17 @@ function Hookshot (){
 		var clone : GameObject;
 		clone = Instantiate(hookshotPrefab, transform.position, transform.rotation);
 		clone.GetComponent(hookshot).first = false;
-		clone.GetComponent(hookshot).times.Clear();
-		clone.GetComponent(hookshot).directions.Clear();
-		clone.GetComponent(hookshot).pushTime = 0;
 		clone.GetComponent(hookshotTwo).first = false;
 		Physics2D.IgnoreCollision(clone.GetComponent.<Collider2D>(), GetComponent.<Collider2D>());
 	}
-
 }
 
 function GoToHookshot (){
-	times = hookshotPrefab.GetComponent(hookshot).times;
-	directions = hookshotPrefab.GetComponent(hookshot).directions;
-
-	for (var i = 0; i < times.length; i++) {
-		dir = directions[i];
-		if (dir == 1){
-			GetComponent.<Rigidbody2D>().velocity = transform.up * 10;
-		}
-		else if (dir == 2){
-			GetComponent.<Rigidbody2D>().velocity = transform.right * 10;
-		}
-		else if (dir == 3){
-			GetComponent.<Rigidbody2D>().velocity = transform.up * -10;
-		}
-		else if (dir == 4){
-			GetComponent.<Rigidbody2D>().velocity = transform.right * -10;
-		}
-		Debug.Log(times[i]);
-		yield WaitForSeconds (times[i]);
+	var realHook : GameObject = GameObject.Find("Hookshot(Clone)");
+	vArray = realHook.GetComponent(hookshot).yArray;
+	for (var i = 0; i < vArray.length; i++) {
+		transform.position = vArray[i];
+		yield WaitForSeconds (0.0000001);
 	}
 	contEnabled = true;
 }
-
-
-/*
-function GoToHookshot (){
-	vArray = hookshotPrefab.GetComponent(hookshot).xArray;
-	for (var i = 0; i < times.length; i++) {
-		transform.LookAt(vArray[i]);
-		GetComponent.<Rigidbody2D>().velocity = transform.up * 10;
-		while (transform.position != vArray[i]){
-		
-		}
-	}
-	transform.rotation.z = 0;
-	contEnabled = true;
-}
-*/

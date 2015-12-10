@@ -5,20 +5,17 @@
 <h3> Highest Priority </h3>
 - Use NEW 2D enviroment tools to make background and other features.
 - Seperate functions into own scripts
+
 <h5> Hookshot </h5>
 
-- Bugs
-	- Make creation coninus
-	- Make collsion with player & hokshot possible
+- Make the hookshot line destroy right
+- Make the player Rotate and the hookshot spawn acordingly
+- Fix 180 Deggre turning
 
 <h5> AI </h5>
 
 - Add level enemies
 - Make eneimes able to be destroyed
-
-<h5> Boat </h5>
-
-- Better Boat Particles
 
 <h5> Player </h5>
 
@@ -29,6 +26,8 @@
 - Make Prompt to press space to pull block
 - Make Life have # of hearts, not a string
 - ADD ITEMS!
+	- Hookshot
+	- Life potion
 
 
 
