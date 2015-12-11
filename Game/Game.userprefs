@@ -1,10 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player Movment\items\hookshot.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player Movment\boatScripts\BoatControl.js">
     <Files>
-      <File FileName="Assets\Scripts\Player Movment\items\hookshot.js" Line="55" Column="2" />
-      <File FileName="Assets\Scripts\Player Movment\items\hookshotTwo.js" Line="13" Column="33" />
-      <File FileName="Assets\Scripts\Player Movment\PlayerControl.js" Line="214" Column="3" />
+      <File FileName="Assets\Scripts\Player Movment\boatScripts\BoatControl.js" Line="18" Column="1" />
+      <File FileName="Assets\Scripts\Player Movment\boatScripts\boatLifeScript.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Control\veriableScript.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

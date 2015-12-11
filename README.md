@@ -4,7 +4,6 @@
 
 <h3> Highest Priority </h3>
 - Use NEW 2D enviroment tools to make background and other features.
-- Seperate functions into own scripts
 
 <h5> Hookshot </h5>
 
@@ -35,7 +34,8 @@
 <h3> Best Practice / Reminders </h3>
 
 - To add a new tranfer veriable:
-	- Difine Verible in veriableScript and both objects
+	- Define Verible in veriableScript and both objects
 	- Add to Unload function in vSctipt
 	- Add to the function run in both objects
 	- Set new veribles after load
+- Seprate big functions like Items should be put into indvidual scripts

@@ -8,27 +8,17 @@ var atk : KeyCode;
 var rb : Rigidbody2D;
 var turnSpe : float;
 var projectile : GameObject;
-
+var controler : GameObject;
 var curSpe : float;
 var accel : float;
 var maxSpeed : float;
 var forward : System.Boolean;
 
 var attackTime : float;
-var controler : GameObject;
-var lifeSprite : Texture;
-public var maxLife : int;
-
-var canDamage : System.Boolean = true;
-public var lifeCount : int;
 
 function Start () {
 	controler = GameObject.Find("Controler");
 	rb = GetComponent.<Rigidbody2D>();
-	yield WaitForSeconds (0.01);
-	maxLife = controler.GetComponent(veriableScript).maxLife;
-	lifeCount = controler.GetComponent(veriableScript).maxLife;
-
 }
 function Update () {
 	//Bind Keys
@@ -101,13 +91,6 @@ function Update () {
 
 	}
 	attackTime += Time.deltaTime;
-	//Life Stuff
-	if (lifeCount == 0){
-		Death();
-	}
-	if (lifeCount > maxLife){
-		lifeCount = maxLife;
-	}
 
 }
 
@@ -119,52 +102,7 @@ function Attack(){
 	
 }
 function OnCollisionEnter2D (coll: Collision2D) {
-	//enemys
-	if (coll.gameObject.tag == "bomb" && canDamage){
-		lifeCount -= 1;
-		canDamage = false;
-		Damaged();
-		
-	}
-	if (coll.gameObject.tag == "bomb" && !canDamage){
-		Physics2D.IgnoreCollision(coll.gameObject.GetComponent.<Collider2D>(), GetComponent.<Collider2D>());
-	}
-	//+life
-	if (coll.gameObject.name == "heart"){
-		lifeCount += 1;
-		Destroy (coll.gameObject);
-	}
-}
-function OnGUI (){
-
-	GUI.DrawTexture(Rect(Screen.width - 70,5,20,20), lifeSprite);
-	GUI.Label(Rect(Screen.width - 64,4,20,20), lifeCount.ToString());
 
 }
 
-function Death (){
-
-}
-
-function Damaged (){
-	
-	var i : int = 0;
-	GetComponent(SpriteRenderer).enabled = false;
-	yield WaitForSeconds (0.2);
-	GetComponent(SpriteRenderer).enabled = true;
-	yield WaitForSeconds (0.2);
-	GetComponent(SpriteRenderer).enabled = false;
-	yield WaitForSeconds (0.2);
-	GetComponent(SpriteRenderer).enabled = true;
-	yield WaitForSeconds (0.2);
-	GetComponent(SpriteRenderer).enabled = false;
-	yield WaitForSeconds (0.2);
-	GetComponent(SpriteRenderer).enabled = true;
-	yield WaitForSeconds (0.2);
-	GetComponent(SpriteRenderer).enabled = false;
-	yield WaitForSeconds (0.2);
-	GetComponent(SpriteRenderer).enabled = true;
-
-	canDamage = true;
-}
 //controler.GetComponent(veriableScript).Unload(lifeCount, maxLife);

@@ -13,29 +13,16 @@ var pullBlock : GameObject;
 var pullPos : System.Boolean;
 var controler : GameObject;
 
-//life
-var lifeSprite : Texture;
-public var maxLife : int;
-public var canDamage : System.Boolean = true;
-public var lifeCount : int;
 
-//hookshot
-public var contEnabled : System.Boolean = true;
-var hookshotPrefab : GameObject;
-var fireHook : KeyCode;
-var vArray = new Array();
 
 function Start () {
 	controler = GameObject.Find("Controler");
-	yield WaitForSeconds (0.01);
-	maxLife = controler.GetComponent(veriableScript).maxLife;
-	lifeCount = controler.GetComponent(veriableScript).lifeCount;
 }
 
 function Update () {
 
 	/* ********MOVEMENT********* */
-	if (contEnabled){
+	if (GetComponent(hookshotScript).contEnabled){
 		if (Input.GetKey(moveUp)){
 			GetComponent.<Rigidbody2D>().velocity.y = speed;
 			if (Input.GetKey(moveLeft)){
@@ -102,12 +89,6 @@ function Update () {
 		}
 	/* ********END MOVEMENT********* */
 	}
-	
-	if (Input.GetKeyDown(fireHook)){
-		Hookshot();
-		GetComponent.<Rigidbody2D>().velocity.x = 0;
-		GetComponent.<Rigidbody2D>().velocity.y = 0;
-	}
 	if (Input.GetKey(attack)){
 		Attack();
 	}
@@ -120,13 +101,7 @@ function Update () {
 			speed = 5;
 	}
 	
-	/***** LIFE COUNTER ******/
-	if (lifeCount == 0){
-		Death();
-	}
-	if (lifeCount > maxLife){
-		lifeCount = maxLife;
-	}
+
 }
 
 
@@ -139,78 +114,10 @@ function OnCollisionEnter2D (coll: Collision2D) {
 	if (coll.gameObject.tag == "CanPress"){
 		pullPos = true;
 	}
-	//enemys
-	if (coll.gameObject.tag == "enemy" && canDamage){
-		lifeCount -= 1;
-		canDamage = false;
-		Damaged();
-	}
-	//+life
-	if (coll.gameObject.name == "heart"){
-		lifeCount += 1;
-		Destroy (coll.gameObject);
-	}
-
 }
 function OnCollisionExit2D (coll: Collision2D) {
 	if (coll.gameObject.tag == "CanPress"){
 		pullPos = false;
 		pullBlock.GetComponent(pullBlockScript).pull = false;
 	}
-}
-function OnTriggerEnter2D (coll: Collider2D){
-	if (coll.gameObject.name == "HookTrail(Clone)"){
-		Destroy (coll.gameObject);
-	}
-}
-
-function OnGUI (){
-	GUI.DrawTexture(Rect(Screen.width - 70,5,20,20), lifeSprite);
-	GUI.Label(Rect(Screen.width - 64,4,20,20), lifeCount.ToString());
-}
-
-function Death (){
-
-}
-
-function Damaged (){
-	
-	GetComponent(SpriteRenderer).enabled = false;
-	yield WaitForSeconds (0.2);
-	GetComponent(SpriteRenderer).enabled = true;
-	yield WaitForSeconds (0.2);
-	GetComponent(SpriteRenderer).enabled = false;
-	yield WaitForSeconds (0.2);
-	GetComponent(SpriteRenderer).enabled = true;
-	yield WaitForSeconds (0.2);
-	GetComponent(SpriteRenderer).enabled = false;
-	yield WaitForSeconds (0.2);
-	GetComponent(SpriteRenderer).enabled = true;
-	yield WaitForSeconds (0.2);
-	GetComponent(SpriteRenderer).enabled = false;
-	yield WaitForSeconds (0.2);
-	GetComponent(SpriteRenderer).enabled = true;
-	canDamage = true;
-}
-//**** ITEM FUNCTIONS ****//
-
-function Hookshot (){
-	if (contEnabled){
-		contEnabled = false;
-		var clone : GameObject;
-		clone = Instantiate(hookshotPrefab, transform.position, transform.rotation);
-		clone.GetComponent(hookshot).first = false;
-		clone.GetComponent(hookshotTwo).first = false;
-		Physics2D.IgnoreCollision(clone.GetComponent.<Collider2D>(), GetComponent.<Collider2D>());
-	}
-}
-
-function GoToHookshot (){
-	var realHook : GameObject = GameObject.Find("Hookshot(Clone)");
-	vArray = realHook.GetComponent(hookshot).yArray;
-	for (var i = 0; i < vArray.length; i++) {
-		transform.position = vArray[i];
-		yield WaitForSeconds (0.0000001);
-	}
-	contEnabled = true;
 }
