@@ -1,9 +1,10 @@
 ﻿#pragma strict
 
 public var first : System.Boolean;
+var destroyTime : float;
 
 function Start () {
-	yield WaitForSeconds (0.11);
+	yield WaitForSeconds (destroyTime);
 	if (!first){
 		Destroy (this.gameObject);
 	}

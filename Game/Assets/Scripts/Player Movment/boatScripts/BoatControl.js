@@ -95,6 +95,7 @@ function Update () {
 }
 
 function Attack(){
+
 	var clone : GameObject;
 	clone = Instantiate(projectile, transform.position, transform.rotation);
 	clone.GetComponent(bombScript).first = false;

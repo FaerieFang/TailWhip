@@ -12,6 +12,12 @@ function Start () {
 		GetComponent(SpriteRenderer).enabled = true;
 	}
 	GetComponent.<Rigidbody2D>().velocity = transform.right * speed;
+	yield WaitForSeconds (0.08);
+	var clone : GameObject;
+	clone = Instantiate(GameObject.Find("PS3 (Shoot)"), transform.position, transform.rotation);
+	clone.GetComponent(PS2script).first = false;
+	Physics2D.IgnoreCollision(clone.GetComponent.<Collider2D>(), GetComponent.<Collider2D>());
+	
 	yield WaitForSeconds (2);
 	if (!first){
 		Destroy (this.gameObject);
