@@ -35,7 +35,7 @@
 
 - To add a new tranfer veriable:
 	- Define Verible in veriableScript and both objects
-	- Add to Unload function in vSctipt
+	- Add to Unload function in vScript
 	- Add to the function run in both objects
 	- Set new veribles after load
 - Seprate big functions like Items should be put into indvidual scripts
