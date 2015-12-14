@@ -16,7 +16,7 @@ var yArray = new Array ();
 
 function Start () {
 	yArray.Clear();
-
+	dir = 1;
 	if (first){
 		GetComponent(SpriteRenderer).enabled = false;
 		GetComponent(BoxCollider2D).enabled = false;
@@ -26,6 +26,7 @@ function Start () {
 		GetComponent(BoxCollider2D).enabled = true;
 	}
 	GetComponent.<Rigidbody2D>().velocity = transform.up * speed;
+
 }
 
 function Update () {
@@ -34,33 +35,41 @@ function Update () {
 	if (dir == 1){
 		if (Input.GetKeyDown(left)){
 			GetComponent.<Rigidbody2D>().velocity = transform.right * -speed;
+			dir = 4;
 		}
 		else if (Input.GetKeyDown(right)){
 			GetComponent.<Rigidbody2D>().velocity = transform.right * speed;
+			dir = 2;
 		}
 	}
 	else if (dir == 2){
 		if (Input.GetKeyDown(up)){
 			GetComponent.<Rigidbody2D>().velocity = transform.up * speed;
+			dir = 1;
 		}
 		else if (Input.GetKeyDown(down)){
 			GetComponent.<Rigidbody2D>().velocity = transform.up * -speed;
+			dir = 3;
 		}
 	}
 	else if (dir == 3){
 		if (Input.GetKeyDown(left)){
 			GetComponent.<Rigidbody2D>().velocity = transform.right * -speed;
+			dir = 4;
 		}
 		else if (Input.GetKeyDown(right)){
 			GetComponent.<Rigidbody2D>().velocity = transform.right * speed;
+			dir = 2;
 		}
 	}
 	else if (dir == 4){
 		if (Input.GetKeyDown(up)){
 			GetComponent.<Rigidbody2D>().velocity = transform.up * speed;
+			dir = 1;
 		}
 		else if (Input.GetKeyDown(down)){
 			GetComponent.<Rigidbody2D>().velocity = transform.up * -speed;
+			dir = 3;
 		}	
 	}
 	
@@ -70,7 +79,6 @@ function FixedUpdate () {
 		if (!first){
 			var clone : GameObject;
 			clone = Instantiate(prefab, transform.position, transform.rotation);
-			Physics2D.IgnoreCollision(clone.GetComponent.<Collider2D>(), GetComponent.<Collider2D>());
 			
 		}
 
