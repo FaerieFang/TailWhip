@@ -9,7 +9,6 @@
 
 - Make the hookshot line destroy right
 - Make the player Rotate and the hookshot spawn acordingly
-- Fix 180 Deggre turning
 
 <h5> AI </h5>
 
