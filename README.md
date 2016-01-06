@@ -7,6 +7,7 @@
 
 <h5> Hookshot </h5>
 
+- Reduce go back time to 0.7 and FIX THE CONINUEING OF TRAVEL AND NON DISTRCTION OF TRAIL
 - Make the hookshot line destroy right
 - Make the player Rotate and the hookshot spawn acordingly
 
